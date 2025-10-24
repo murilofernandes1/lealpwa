@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import api from "../../services/api";
-import Logo from "../../../icons/icon-192x192.png";
+import Logo from "../../../public/icons/icon-192x192.png";
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
