@@ -1,0 +1,103 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5000;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #004b87;
+  transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #005fa3;
+}
+
+.modal h2 {
+  color: #004b87;
+  margin-bottom: 20px;
+}
+.subtitle {
+  color: #004b87;
+  width: 100%;
+}
+.modal textarea {
+  resize: none;
+  width: 75%;
+  height: 25vh;
+  font-family: "Inter", sans-serif;
+  border: 2px solid #cfd8dc;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.25s ease-in-out;
+}
+.modal textarea:focus {
+  border-color: #005fa3;
+  box-shadow: 0 0 6px rgba(0, 95, 163, 0.5);
+  outline: none;
+}
+.submitBtn {
+  padding: 12px 15px;
+  background: #005fa3;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  width: 100%;
+  max-width: 200px;
+  margin-top: 20px;
+}
+
+.submitBtn:hover {
+  background: #004b87;
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  background: #cfd8dc;
+  cursor: not-allowed;
+  transform: none;
+}
+.errorText {
+  color: red;
+}

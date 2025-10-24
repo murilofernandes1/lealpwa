@@ -1,0 +1,127 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+  font-family: "Inter", sans-serif;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #004b87;
+  transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #005fa3;
+}
+
+.modal h2 {
+  color: #004b87;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.subtitle {
+  color: #004b87;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  color: #004b87;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.input,
+.select {
+  width: 95%;
+  padding: 10px 12px;
+  border: 2px solid #cfd8dc;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.25s ease-in-out;
+}
+
+.input:focus,
+.select:focus {
+  border-color: #005fa3;
+  box-shadow: 0 0 6px rgba(0, 95, 163, 0.5);
+  outline: none;
+}
+
+.submitBtn {
+  padding: 12px 15px;
+  background: #005fa3;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.submitBtn:hover {
+  background: #004b87;
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  background: #cfd8dc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.errorText {
+  color: #b00020;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 10px;
+}
