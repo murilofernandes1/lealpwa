@@ -11,6 +11,7 @@
   z-index: 9999;
 }
 
+
 .modal {
   background: #ffffff;
   border-radius: 16px;
@@ -50,7 +51,7 @@
   color: #005fa3;
 }
 
-h2 {
+.overlay h2 {
   color: #004b87;
   margin-bottom: 10px;
   font-weight: 700;
