@@ -7,6 +7,7 @@
   background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   z-index: 10000;
+  height: 100vh;
 }
 
 .spinner {

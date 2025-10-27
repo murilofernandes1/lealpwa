@@ -57,7 +57,8 @@
   color: #004b87;
   width: 100%;
 }
-
+.modal input {
+}
 .fileInput {
   width: 100%;
   padding: 12px;

@@ -1,18 +1,30 @@
 import styles from "./Home.module.css";
-import { useState, useEffect } from "react";
+import { FiUser, FiLogOut } from "react-icons/fi";
 import api from "../../services/api";
+import { useState, useEffect, useRef } from "react";
 import Loading from "../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
-type User = { name: string; city: { name: string } };
+type User = {
+  name: string;
+  photo?: string;
+  department?: { name: string };
+  city?: { name: string };
+};
+
 type Notice = { id: string; image: string; title?: string };
 
 export default function Home() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(true);
-  const [greeting, setGreeting] = useState("");
   const [user, setUser] = useState<User | null>(null);
   const [notices, setNotices] = useState<Notice[]>([]);
   const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
-  const token = localStorage.getItem("token");
+  const [greeting, setGreeting] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_picture, setPicture] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -49,12 +61,49 @@ export default function Home() {
 
   if (loading) return <Loading />;
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const handleAvatarClick = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setPicture(e.target.files[0]);
+    // Aqui você pode enviar a imagem para o backend
+  };
+
   return (
     <div className={styles.homeContainer}>
       <header className={styles.header}>
-        <h1 className={styles.greeting}>
-          {greeting}, <span>{user?.name.split(" ")[0]}!</span> 👋
-        </h1>
+        <div onClick={handleAvatarClick} className={styles.avatar}>
+          {user?.photo ? (
+            <img src={user.photo} alt="Foto do usuário" />
+          ) : (
+            <FiUser className={styles.avatarPlaceholder} />
+          )}
+          <input
+            type="file"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+            accept="image/*"
+          />
+        </div>
+
+        <div className={styles.userInfo}>
+          <h1>
+            {greeting}, {user?.name.split(" ")[0]}!
+          </h1>
+          {user?.department && <p>{user.department.name}</p>}
+          {user?.city && <p>Leal {user.city.name}</p>}
+        </div>
+
+        <button className={styles.logoutButton} onClick={handleLogout}>
+          <FiLogOut /> Sair
+        </button>
       </header>
 
       <main className={styles.gridContainer}>
@@ -70,6 +119,7 @@ export default function Home() {
                   className={styles.image}
                   src={n.image}
                   alt={n.title || "Aviso"}
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
               {n.title && <p className={styles.caption}>{n.title}</p>}

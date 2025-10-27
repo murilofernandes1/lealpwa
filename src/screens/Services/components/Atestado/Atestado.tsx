@@ -30,7 +30,7 @@ export default function Atestado({ onClose, onSubmit }: AtestadoProps) {
         <button className={styles.closeBtn} onClick={onClose}>
           <FiX size={24} />
         </button>
-        <h2></h2>
+        <h2>Enviar atestado</h2>
         <p>
           Lembre-se de levar o atestado físico ao departamento de Recursos
           Humanos assim que retornar as atividades!

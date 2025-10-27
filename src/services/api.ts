@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://192.168.3.108:3000",
+  baseURL: "https://backend-1yxu.onrender.com",
 });
 
 export default api;

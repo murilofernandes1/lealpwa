@@ -5,6 +5,7 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   plugins: [
     react(),
+
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "robots.txt", "icons/*.png"],
@@ -13,7 +14,7 @@ export default defineConfig({
         short_name: "Colaborador",
         description: "App do colaborador Leal",
         start_url: "/",
-        display: "standalone",
+        display: "fullscreen",
         background_color: "#004b87",
         theme_color: "#004b87",
         icons: [
@@ -43,4 +44,7 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    host: true,
+  },
 });

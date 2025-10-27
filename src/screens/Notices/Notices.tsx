@@ -31,7 +31,6 @@ export default function Notices() {
         <Loading />
       ) : (
         <div className={styles.advicesContainer}>
-          <h2>Avisos</h2>
           <div className={styles.advices}>
             {avisos?.map((a) => (
               <div key={a.id} className={styles.card}>
