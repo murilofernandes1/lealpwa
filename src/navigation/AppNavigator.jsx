@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import PublicRoutes from "./PublicRoutes.js";
+import PublicRoutes from "./PublicRoutes.jsx";
 import Home from "../screens/Home/Home.Jsx";
-import Notices from "../screens/Notices/Notices.js";
+import Notices from "../screens/Notices/Notices.jsx";
 
-import Services from "../screens/Services/Services.js";
-import Login from "../screens/Login/Login.js";
-import PrivateRoutes from "./PrivateRoutes.js";
+import Services from "../screens/Services/Services.jsx";
+import Login from "../screens/Login/Login.jsx";
+import PrivateRoutes from "./PrivateRoutes.jsx";
 export default function AppNavigator() {
   return (
     <>

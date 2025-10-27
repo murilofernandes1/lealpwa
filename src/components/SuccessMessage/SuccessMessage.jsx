@@ -2,17 +2,11 @@ import { useEffect } from "react";
 import styles from "./SuccessMessage.module.css";
 import { FiCheckCircle } from "react-icons/fi";
 
-type SuccessMessageProps = {
-  message?: string;
-  duration?: number;
-  onClose: () => void;
-};
-
 export default function SuccessMessage({
   message = "Enviado com sucesso!",
   duration = 3000,
   onClose,
-}: SuccessMessageProps) {
+}) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
