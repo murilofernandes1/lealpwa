@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 type User = {
   name: string;
-  photo?: string;
+  image?: string;
   department?: { name: string };
   city?: { name: string };
 };
@@ -41,7 +41,7 @@ export default function Home() {
         ]);
         setUser(userRes.data);
         setNotices(noticesRes.data);
-
+        console.log(userRes.data);
         const hour = new Date().getHours();
         setGreeting(
           hour >= 5 && hour < 12
@@ -72,15 +72,17 @@ export default function Home() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setPicture(e.target.files[0]);
-    // Aqui você pode enviar a imagem para o backend
+    api.put("/users/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   };
 
   return (
     <div className={styles.homeContainer}>
       <header className={styles.header}>
         <div onClick={handleAvatarClick} className={styles.avatar}>
-          {user?.photo ? (
-            <img src={user.photo} alt="Foto do usuário" />
+          {user?.image ? (
+            <img src={user.image} alt="Foto do usuário" />
           ) : (
             <FiUser className={styles.avatarPlaceholder} />
           )}
