@@ -10,9 +10,14 @@
   align-items: center;
   z-index: 9999;
 }
+<<<<<<< HEAD
 .overlay h2 {
   color: #004b87;
 }
+=======
+
+
+>>>>>>> 76c942132ec804cfaf590c906d3768b1586551b7
 .modal {
   background: #ffffff;
   border-radius: 16px;
@@ -52,7 +57,7 @@
   color: #005fa3;
 }
 
-h2 {
+.overlay h2 {
   color: #004b87;
   margin-bottom: 10px;
   font-weight: 700;
