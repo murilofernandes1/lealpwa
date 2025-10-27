@@ -7,6 +7,7 @@ import Loading from "../../components/Loading/Loading";
 interface Avisos {
   id: number | string;
   content: string;
+  title: string;
 }
 export default function Notices() {
   const token = localStorage.getItem("token");
@@ -35,7 +36,8 @@ export default function Notices() {
             {avisos?.map((a) => (
               <div key={a.id} className={styles.card}>
                 <FiInfo className={styles.icon} />
-                <h3>{a.content}</h3>
+                <h3>{a.title}</h3>
+                <p>{a.content}</p>
               </div>
             ))}
           </div>
