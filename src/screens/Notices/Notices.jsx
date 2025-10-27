@@ -16,9 +16,9 @@ export default function Notices() {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAvisos(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -34,13 +34,28 @@ export default function Notices() {
       ) : (
         <div className={styles.advicesContainer}>
           <div className={styles.advices}>
-            {avisos?.map((a) => (
-              <div key={a.id} className={styles.card}>
-                <FiInfo className={styles.icon} />
-                <h3>{a.title}</h3>
-                <p>{a.content}</p>
-              </div>
-            ))}
+            {avisos?.map((a) => {
+              const date = new Date(a.dateTime);
+              const formatedDateTime = date.toLocaleString("pt-BR", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+              return (
+                <div key={a.id} className={styles.card}>
+                  <FiInfo className={styles.icon} />
+                  <h3>{a.title}</h3>
+                  <p>
+                    Local: <span>{a.content}</span>
+                  </p>
+                  <p>
+                    Data e Horário: <span>{formatedDateTime}</span>
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
