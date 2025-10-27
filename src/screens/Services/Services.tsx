@@ -4,7 +4,7 @@ import Atestado from "./components/Atestado/Atestado";
 import { useState } from "react";
 import SuporteTI from "./components/SuporteTI/SuporteTI";
 import Administrativo from "./components/Administrativo/Administrativo";
-import Manutencao from "./components/Manutenção/Manutencao";
+import Manutencao from "./components/Manutenção/Manutencao.tsx";
 export default function Services() {
   const [showAtestado, setShowAtestado] = useState(false);
   const [showSuporteTI, setShowSuporteTi] = useState(false);
