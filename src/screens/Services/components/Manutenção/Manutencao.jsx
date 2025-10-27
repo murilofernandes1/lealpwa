@@ -4,11 +4,7 @@ import { FiX } from "react-icons/fi";
 import Loading from "../../../../components/Loading/Loading";
 import SuccessMessage from "../../../../components/SuccessMessage/SuccessMessage";
 
-type ManutencaoTIProps = {
-  onClose: () => void;
-};
-
-export default function Manutencao({ onClose }: ManutencaoTIProps) {
+export default function Manutencao({ onClose }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
@@ -50,7 +46,7 @@ export default function Manutencao({ onClose }: ManutencaoTIProps) {
 
           <h2>Solicitar manutenção</h2>
           <p className={styles.subtitle}>
-            Sua solicitação será enviada a equipe de manutenção
+            Sua solicitação será enviada à equipe de manutenção
           </p>
 
           <form className={styles.formContainer}>

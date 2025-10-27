@@ -4,11 +4,7 @@ import { FiX } from "react-icons/fi";
 import Loading from "../../../../components/Loading/Loading";
 import SuccessMessage from "../../../../components/SuccessMessage/SuccessMessage";
 
-type SuporteTIProps = {
-  onClose: () => void;
-};
-
-export default function SuporteTI({ onClose }: SuporteTIProps) {
+export default function SuporteTI({ onClose }) {
   const [text, setText] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -51,7 +47,7 @@ export default function SuporteTI({ onClose }: SuporteTIProps) {
             value={text}
             onChange={(e) => setText(e.target.value)}
             required
-          ></textarea>
+          />
           <button className={styles.submitBtn} onClick={handleSubmit}>
             Enviar
           </button>

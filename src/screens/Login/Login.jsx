@@ -11,7 +11,7 @@ export default function Login() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+  async function handleLogin(e) {
     e.preventDefault();
     try {
       setLoading(true);
@@ -26,14 +26,13 @@ export default function Login() {
     } catch (error) {
       setLoading(false);
       setError(true);
-
       console.log(error);
     }
   }
 
   return (
     <>
-      {loading === true ? (
+      {loading ? (
         <Loading />
       ) : (
         <div className={styles.loginContainer}>
@@ -59,10 +58,8 @@ export default function Login() {
               />
 
               <button type="submit">Entrar</button>
-              {error === true ? (
+              {error && (
                 <p className={styles.error}>Usuário ou senha inválidos</p>
-              ) : (
-                <div />
               )}
             </form>
             <p className={styles.advice}>

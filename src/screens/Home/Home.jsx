@@ -5,49 +5,40 @@ import { useState, useEffect, useRef } from "react";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 
-type User = {
-  name: string;
-  image?: string;
-  department?: { name: string };
-  city?: { name: string };
-};
-
-type Notice = { id: string; image: string; title?: string };
-
 export default function Home() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
-  const [notices, setNotices] = useState<Notice[]>([]);
-  const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
+  const [user, setUser] = useState(null);
+  const [notices, setNotices] = useState([]);
+  const [selectedNotice, setSelectedNotice] = useState(null);
   const [greeting, setGreeting] = useState("");
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_picture, setPicture] = useState<File | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [picture, setPicture] = useState(null);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     async function loadData() {
       if (!token) return;
       setLoading(true);
       try {
-        const [userRes, noticesRes] = await Promise.all([
-          api.get("/users/me", {
-            headers: {
-              "Cache-Control": "no-cache",
-              Authorization: `Bearer ${token}`,
-            },
-          }),
-          api.get("/notices", {
-            headers: {
-              "Cache-Control": "no-cache",
-              Authorization: `Bearer ${token}`,
-            },
-          }),
-        ]);
+        const userRes = await api.get("/users/me", {
+          headers: {
+            "Cache-Control": "no-cache",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const noticesRes = await api.get("/notices", {
+          headers: {
+            "Cache-Control": "no-cache",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         setUser(userRes.data);
         setNotices(noticesRes.data);
         console.log(userRes.data);
+
         const hour = new Date().getHours();
         setGreeting(
           hour >= 5 && hour < 12
@@ -57,7 +48,7 @@ export default function Home() {
             : "Boa noite"
         );
       } catch (error) {
-        console.error(error);
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -76,7 +67,7 @@ export default function Home() {
     if (fileInputRef.current) fileInputRef.current.click();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e) => {
     if (e.target.files) setPicture(e.target.files[0]);
     api.put("/users/me", {
       headers: { Authorization: `Bearer ${token}` },
@@ -103,7 +94,7 @@ export default function Home() {
 
         <div className={styles.userInfo}>
           <h1>
-            {greeting}, {user?.name.split(" ")[0]}!
+            {greeting}, {user?.name?.split(" ")[0]}!
           </h1>
           {user?.department && <p>{user.department.name}</p>}
           {user?.city && <p>Leal {user.city.name}</p>}

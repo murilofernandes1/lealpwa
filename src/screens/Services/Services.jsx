@@ -1,9 +1,9 @@
 import styles from "./Services.module.css";
 import { FiFileText, FiHeadphones, FiTool, FiMail } from "react-icons/fi";
-import Atestado from "./components/Atestado/Atestado";
+import Atestado from "./components/Atestado/Atestado.tsx";
 import { useState } from "react";
-import SuporteTI from "./components/SuporteTI/SuporteTI";
-import Administrativo from "./components/Administrativo/Administrativo";
+import SuporteTI from "./components/SuporteTI/SuporteTI.jsx";
+import Administrativo from "./components/Administrativo/Administrativo.tsx";
 import Manutencao from "./components/Manutenção/Manutencao.tsx";
 export default function Services() {
   const [showAtestado, setShowAtestado] = useState(false);

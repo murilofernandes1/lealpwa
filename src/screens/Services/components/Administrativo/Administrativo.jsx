@@ -4,11 +4,7 @@ import { FiX } from "react-icons/fi";
 import Loading from "../../../../components/Loading/Loading";
 import SuccessMessage from "../../../../components/SuccessMessage/SuccessMessage";
 
-type AdministrativoTIProps = {
-  onClose: () => void;
-};
-
-export default function Administrativo({ onClose }: AdministrativoTIProps) {
+export default function Administrativo({ onClose }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);

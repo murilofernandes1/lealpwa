@@ -4,31 +4,32 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import Loading from "../../components/Loading/Loading";
 
-interface Avisos {
-  id: number | string;
-  content: string;
-  title: string;
-}
 export default function Notices() {
   const token = localStorage.getItem("token");
-  const [avisos, setAvisos] = useState<Avisos[] | null>([]);
+  const [avisos, setAvisos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadData() {
-      const response = await api.get("/alerts", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setAvisos(response.data);
-      console.log(response.data);
-      setLoading(false);
+      try {
+        const response = await api.get("/alerts", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setAvisos(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     loadData();
   }, [token]);
+
   return (
     <>
-      {loading === true ? (
+      {loading ? (
         <Loading />
       ) : (
         <div className={styles.advicesContainer}>
