@@ -33,10 +33,16 @@ export default function Home() {
       try {
         const [userRes, noticesRes] = await Promise.all([
           api.get("/users/me", {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: {
+              "Cache-Control": "no-cache",
+              Authorization: `Bearer ${token}`,
+            },
           }),
           api.get("/notices", {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: {
+              "Cache-Control": "no-cache",
+              Authorization: `Bearer ${token}`,
+            },
           }),
         ]);
         setUser(userRes.data);
