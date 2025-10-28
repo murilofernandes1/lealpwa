@@ -3,7 +3,7 @@ import { FiFileText, FiHeadphones, FiTool, FiMail } from "react-icons/fi";
 import Atestado from "./components/Atestado/Atestado.jsx";
 import { useState } from "react";
 import SuporteTI from "./components/SuporteTI/SuporteTI.jsx";
-import FOP from "./components/FOP/FOP.jsx";
+import Fop from "./components/Fop/Fop.jsx";
 import Manutencao from "./components/Manutenção/Manutencao.jsx";
 export default function Services() {
   const [showAtestado, setShowAtestado] = useState(false);
@@ -37,7 +37,7 @@ export default function Services() {
           <h3>Solicitar correção de ponto</h3>
           <p>Envie uma solicitação para a abertura de um FOP.</p>
         </div>
-        {showFOP && <FOP onClose={() => setShowFOP(false)} />}
+        {showFOP && <Fop onClose={() => setShowFOP(false)} />}
         <div onClick={() => setSeeManutencao(true)} className={styles.card}>
           <FiTool className={styles.icon} />
           <h3>Solicitar manutenção</h3>
