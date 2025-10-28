@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styles from "./Administrativo.module.css";
+import styles from "./Fop.module.css";
 import { FiX } from "react-icons/fi";
 import Loading from "../../../../components/Loading/Loading";
 import SuccessMessage from "../../../../components/SuccessMessage/SuccessMessage";
 
-export default function Administrativo({ onClose }) {
+export default function FOP({ onClose }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);

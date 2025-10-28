@@ -3,12 +3,12 @@ import { FiFileText, FiHeadphones, FiTool, FiMail } from "react-icons/fi";
 import Atestado from "./components/Atestado/Atestado.jsx";
 import { useState } from "react";
 import SuporteTI from "./components/SuporteTI/SuporteTI.jsx";
-import Administrativo from "./components/Administrativo/Administrativo.jsx";
+import FOP from "./components/FOP/FOP.jsx";
 import Manutencao from "./components/Manutenção/Manutencao.jsx";
 export default function Services() {
   const [showAtestado, setShowAtestado] = useState(false);
   const [showSuporteTI, setShowSuporteTi] = useState(false);
-  const [showAdministrativo, setShowAdministrativo] = useState(false);
+  const [showFOP, setShowFOP] = useState(false);
   const [seeManutencao, setSeeManutencao] = useState(false);
 
   return (
@@ -32,17 +32,12 @@ export default function Services() {
           <p>Solicite ajuda com equipamentos e sistemas.</p>
         </div>
         {showSuporteTI && <SuporteTI onClose={() => setShowSuporteTi(false)} />}
-        <div
-          onClick={() => setShowAdministrativo(true)}
-          className={styles.card}
-        >
+        <div onClick={() => setShowFOP(true)} className={styles.card}>
           <FiMail className={styles.icon} />
           <h3>Solicitar correção de ponto</h3>
           <p>Envie uma solicitação para a abertura de um FOP.</p>
         </div>
-        {showAdministrativo && (
-          <Administrativo onClose={() => setShowAdministrativo(false)} />
-        )}
+        {showFOP && <FOP onClose={() => setShowFOP(false)} />}
         <div onClick={() => setSeeManutencao(true)} className={styles.card}>
           <FiTool className={styles.icon} />
           <h3>Solicitar manutenção</h3>
