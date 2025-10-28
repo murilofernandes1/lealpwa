@@ -33,6 +33,7 @@ export default function Notices() {
         <Loading />
       ) : (
         <div className={styles.advicesContainer}>
+          <h2>Meus avisos</h2>
           <div className={styles.advices}>
             {avisos?.map((a) => {
               const date = new Date(a.dateTime);
