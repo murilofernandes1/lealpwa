@@ -123,7 +123,7 @@ export default function Profile() {
                 month: "2-digit",
                 year: "numeric",
               });
-              const ocorrencyHour = datetime.toLocaleTimeString;
+
               return (
                 <div className={styles.fop} key={f.id}>
                   {f.length === 0 && <p>Nenhuma solicitação de FOP ainda.</p>}
@@ -150,11 +150,41 @@ export default function Profile() {
                   {f.status === "Pending" && (
                     <>
                       <p className={styles.fopStatus}>
-                        Status: <span>{f.status}</span>
+                        Status: <span>Pendente</span>
                       </p>
+                      <p>
+                        Data da ocorrência: <span>{ocorrencyDate}</span>
+                      </p>
+                      <p>
+                        Ponto esquecido: <span>{f.justify}</span>
+                      </p>
+                      <p>
+                        Horário a ser considerado: <span>{f.correctHour}</span>
+                      </p>
+
                       <p>
                         Solicitação de FOP feita em:{" "}
                         <span>{formatedDateTime}</span>
+                      </p>
+                    </>
+                  )}
+                  {f.status === "Denied" && (
+                    <>
+                      <p className={styles.fopStatus}>
+                        Status: <span>Negado</span>
+                      </p>
+                      <p>
+                        Data da ocorrência: <span>{ocorrencyDate}</span>
+                      </p>
+                      <p>
+                        Ponto esquecido: <span>{f.justify}</span>
+                      </p>
+                      <p>
+                        Horário a ser considerado: <span>{f.correctHour}</span>
+                      </p>
+
+                      <p>
+                        Negado em <span>{formatedDateTime}</span>
                       </p>
                     </>
                   )}

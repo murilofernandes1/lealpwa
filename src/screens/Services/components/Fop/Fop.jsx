@@ -3,8 +3,11 @@ import styles from "./Fop.module.css";
 import { FiX } from "react-icons/fi";
 import Loading from "../../../../components/Loading/Loading";
 import SuccessMessage from "../../../../components/SuccessMessage/SuccessMessage";
+import api from "../../../../services/api";
 
 export default function FOP({ onClose }) {
+  const token = localStorage.getItem("token");
+
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
@@ -18,16 +21,34 @@ export default function FOP({ onClose }) {
       return;
     }
 
-    setLoading(true);
-    setError(false);
+    const isoDate = new Date(date).toISOString();
+    try {
+      setLoading(true);
+      await api.post(
+        "/users/fop",
+        {
+          datetime: isoDate,
+          justify: correction,
+          correctHour: hour,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    setTimeout(() => {
-      setLoading(false);
-      setSuccessMessage(true);
-      setDate("");
-      setCorrection("");
-      setHour("");
-    }, 1000);
+      setError(false);
+      setTimeout(() => {
+        setLoading(false);
+        setSuccessMessage(true);
+        setDate("");
+        setCorrection("");
+        setHour("");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -68,10 +89,10 @@ export default function FOP({ onClose }) {
               className={styles.select}
             >
               <option>Selecione uma opção</option>
-              <option>Entrada</option>
-              <option>Ida ao almoço</option>
-              <option>Volta do almoço</option>
-              <option>Saída</option>
+              <option value="Entrada">Entrada</option>
+              <option value="Ida do Almoço">Ida ao almoço</option>
+              <option value="Volta do Almoço">Volta do almoço</option>
+              <option value="Saida">Saída</option>
             </select>
 
             <label>Horário correto</label>

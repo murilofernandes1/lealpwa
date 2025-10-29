@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data: token } = await api.post("/users/login", {
+      const { data: token } = await api.post("/auth/login", {
         email: email,
         password: password,
       });
