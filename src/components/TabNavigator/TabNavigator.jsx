@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { FaHome, FaBullhorn, FaTools } from "react-icons/fa";
+import { FaHome, FaBullhorn, FaTools, FaUser } from "react-icons/fa";
 
 import styles from "./TabNavigator.module.css";
 
@@ -20,6 +20,10 @@ export default function TabNavigator() {
         <button onClick={() => navigate("/services")}>
           <FaTools className={styles.icon} />
           <span>Serviços</span>
+        </button>
+        <button onClick={() => navigate("/profile")}>
+          <FaUser className={styles.icon} />
+          <span>Perfil</span>
         </button>
       </nav>
     </div>
