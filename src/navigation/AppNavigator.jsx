@@ -14,7 +14,7 @@ export default function AppNavigator() {
           <Route path="/login" element={<Login />} />
         </Route>
         <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<Homepage />}></Route>
+          <Route path="/" element={<Homepage />} />
           <Route path="/notices" element={<Notices />} />
           <Route path="/services" element={<Services />} />
           <Route path="/profile" element={<Profile />} />

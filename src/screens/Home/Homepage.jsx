@@ -1,17 +1,16 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import api from "../../services/api";
 import Loading from "../../components/Loading/Loading";
 import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
-import { FiUser } from "react-icons/fi";
+import Alerts from "./components/Alerts/Alerts";
 import styles from "./Home.module.css";
 
 export default function Home() {
   const token = localStorage.getItem("token");
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
-  const [picture, setPicture] = useState();
   const [notices, setNotices] = useState([]);
+  const [alerts, setAlerts] = useState([]);
   const [selectedNotice, setSelectedNotice] = useState(null);
   const [greeting, setGreeting] = useState("");
   const [showMessage, setShowMessage] = useState(false);
@@ -20,24 +19,22 @@ export default function Home() {
     async function loadData() {
       if (!token) return;
       setLoading(true);
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Cache-Control": "no-cache",
+      };
+
       try {
-        const userRes = await api.get("/users/me", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Cache-Control": "no-cache",
-          },
-        });
-        const noticesRes = await api.get("/notices", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Cache-Control": "no-cache",
-          },
-        });
+        const [userRes, noticesRes, alertsRes] = await Promise.all([
+          api.get("/users/me", { headers }),
+          api.get("/notices", { headers }),
+          api.get("/alerts", { headers }),
+        ]);
 
         setUser(userRes.data);
         setNotices(noticesRes.data);
-        setPicture(userRes.data.image);
-
+        setAlerts(alertsRes.data);
         const hour = new Date().getHours();
         setGreeting(
           hour >= 5 && hour < 12
@@ -61,21 +58,14 @@ export default function Home() {
   return (
     <div className={styles.homeContainer}>
       <header className={styles.header}>
-        <div className={styles.avatar}>
-          {picture ? (
-            <img src={picture} alt="Foto do usuário" />
-          ) : (
-            <FiUser className={styles.avatarPlaceholder} />
-          )}
-        </div>
-
         <div className={styles.userInfo}>
           <h1>
             {greeting}, {user?.name?.split(" ")[0]}!
           </h1>
+          <p>Confira as novidades da semana na sua unidade.</p>
         </div>
       </header>
-
+      <Alerts alerts={alerts} />
       <main className={styles.gridContainer}>
         {notices.length > 0 ? (
           notices.map((n) => (

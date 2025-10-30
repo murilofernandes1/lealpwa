@@ -1,0 +1,82 @@
+.advices {
+  align-self: center;
+  max-width: 100%;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+  height: 200px;
+}
+
+.advices :global(.slick-slide) > div {
+  padding: 0 5px;
+  display: flex !important;
+  justify-content: center;
+}
+
+.card {
+  align-content: center;
+  background: #ffffff;
+  color: #004b87;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #004b87;
+  margin-bottom: 5px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #004b87;
+  font-weight: 500;
+}
+.card span {
+  font-weight: 700;
+}
+
+.icon {
+  font-size: 2rem;
+  color: #004b87;
+}
+
+.advices :global(.slick-dots) {
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0;
+  margin: 0;
+}
+
+.advices :global(.slick-dots li button:before) {
+  color: #ffffff;
+  font-size: 10px;
+}
+
+.advices :global(.slick-dots li.slick-active button:before) {
+  color: red;
+}
+
+.advices :global(.slick-prev),
+.advices :global(.slick-next) {
+  z-index: 10;
+}
+
+.advices :global(.slick-prev:before),
+.advices :global(.slick-next:before) {
+  color: #004b87;
+  font-size: 30px;
+}

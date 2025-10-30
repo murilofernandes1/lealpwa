@@ -1,72 +1,32 @@
 .homeContainer {
-  background-color: #004b87;
-  min-height: 100vh;
   font-family: "Inter", sans-serif;
   padding: 0;
   margin: 0;
+  padding-bottom: 100px;
 }
 
 .header {
   display: flex;
-  align-items: center;
-  background-color: #ffffff;
+  align-items: start;
   padding: 1rem 2rem;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 50px;
-  gap: 35px;
+  margin-top: 50px;
+  margin-bottom: 10px;
 }
 
-.avatar {
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f0f0;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  outline: none;
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.avatarPlaceholder {
-  width: 50%;
-  height: 50%;
-  color: #888;
-}
-.userInfo {
-  align-self: center;
-}
 .userInfo h1 {
   margin: 0;
-  font-size: 1.7rem;
-  color: #004b87;
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: 800;
 }
 
 .userInfo p {
-  margin: 2px 0;
+  margin: 10px 0;
   font-size: 0.9rem;
-  color: #004b87;
-}
-
-.logoutButton {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: #c00;
+  color: #ffffff;
+  font-weight: 800;
 }
 
 .gridContainer {
@@ -78,6 +38,7 @@
   background-color: #ffffff;
   padding: 20px;
   border-radius: 20px;
+  margin-top: -50px;
 }
 
 .noticeCard {
