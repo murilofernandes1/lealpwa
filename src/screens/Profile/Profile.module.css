@@ -1,9 +1,10 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  margin-top: 50px;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 0 16px;
 }
+
 .header {
   display: flex;
   align-items: center;
@@ -12,8 +13,7 @@
   padding: 1rem 2rem;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: -100px;
+  box-shadow: 0 2px 6px rgba(107, 102, 102, 0.1);
 }
 
 .avatar {
@@ -64,38 +64,18 @@
   gap: 0.3rem;
   color: #c00;
 }
-.fopsContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  gap: 30px;
-}
-.fopsContainer h2 {
-  color: #ffffff;
-  font-size: 1.8rem;
-  font-weight: 700;
 
-  text-align: center;
-}
-.fop {
+.showFopsButton {
+  color: #004b87;
   background-color: #ffffff;
   padding: 20px 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.25s ease-in-out;
-  width: 60%;
-  height: 200px;
-  align-self: center;
-}
-.fop:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-}
-.fop p {
-  font-weight: 500;
-  color: #004b87;
-}
-.fop span {
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.3rem;
   font-weight: 700;
+  margin: 2rem auto;
+  display: block;
+  transition: all 0.2s ease-in-out;
+  font-family: "Inter", sans-serif;
 }
