@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
 import api from "../../services/api";
 import { FiUser, FiLogOut } from "react-icons/fi";
+
 export default function Profile() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -11,6 +12,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [picture, setPicture] = useState(null);
   const [fops, setFops] = useState([]);
+  const [showFops, setShowFops] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -80,7 +82,7 @@ export default function Profile() {
       {loading === true ? (
         <Loading />
       ) : (
-        <div>
+        <>
           {" "}
           <header className={styles.header}>
             <div onClick={handleAvatarClick} className={styles.avatar}>
@@ -108,91 +110,96 @@ export default function Profile() {
               <FiLogOut /> Sair
             </button>
           </header>
-          <div className={styles.fopsContainer}>
-            <h2>Minhas solicitações de FOP</h2>
-            {fops.map((f) => {
-              const date = new Date(f.updatedAt || f.createdAt);
-              const formatedDateTime = date.toLocaleString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-              });
-              const datetime = new Date(f.datetime);
-              const ocorrencyDate = datetime.toLocaleDateString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-              });
+          <div className={styles.container}>
+            <div className={styles.fopsContainer}>
+              <h2>Minhas Solicitações de FOP</h2>
 
-              return (
-                <div className={styles.fop} key={f.id}>
-                  {f.length === 0 && <p>Nenhuma solicitação de FOP ainda.</p>}
-                  {f.status === "Approved" && (
-                    <>
-                      <p className={styles.fopStatus}>
-                        Status: <span>Aprovado</span>
-                      </p>
-                      <p>
-                        Data da ocorrência: <span>{ocorrencyDate}</span>
-                      </p>
-                      <p>
-                        Ponto esquecido: <span>{f.justify}</span>
-                      </p>
-                      <p>
-                        Horário a ser considerado: <span>{f.correctHour}</span>
-                      </p>
+              {fops.map((f) => {
+                const date = new Date(f.updatedAt || f.createdAt);
+                const formatedDateTime = date.toLocaleString("pt-BR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                });
+                const datetime = new Date(f.datetime);
+                const ocorrencyDate = datetime.toLocaleDateString("pt-BR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                });
 
-                      <p>
-                        Aprovado em <span>{formatedDateTime}</span>
-                      </p>
-                    </>
-                  )}
-                  {f.status === "Pending" && (
-                    <>
-                      <p className={styles.fopStatus}>
-                        Status: <span>Pendente</span>
-                      </p>
-                      <p>
-                        Data da ocorrência: <span>{ocorrencyDate}</span>
-                      </p>
-                      <p>
-                        Ponto esquecido: <span>{f.justify}</span>
-                      </p>
-                      <p>
-                        Horário a ser considerado: <span>{f.correctHour}</span>
-                      </p>
+                return (
+                  <div className={styles.fop} key={f.id}>
+                    {f.length === 0 && <p>Nenhuma solicitação de FOP ainda.</p>}
+                    {f.status === "Approved" && (
+                      <>
+                        <p className={styles.fopStatus}>
+                          Status: <span>Aprovado</span>
+                        </p>
+                        <p>
+                          Data da ocorrência: <span>{ocorrencyDate}</span>
+                        </p>
+                        <p>
+                          Ponto esquecido: <span>{f.justify}</span>
+                        </p>
+                        <p>
+                          Horário a ser considerado:{" "}
+                          <span>{f.correctHour}</span>
+                        </p>
 
-                      <p>
-                        Solicitação de FOP feita em:{" "}
-                        <span>{formatedDateTime}</span>
-                      </p>
-                    </>
-                  )}
-                  {f.status === "Denied" && (
-                    <>
-                      <p className={styles.fopStatus}>
-                        Status: <span>Negado</span>
-                      </p>
-                      <p>
-                        Data da ocorrência: <span>{ocorrencyDate}</span>
-                      </p>
-                      <p>
-                        Ponto esquecido: <span>{f.justify}</span>
-                      </p>
-                      <p>
-                        Horário a ser considerado: <span>{f.correctHour}</span>
-                      </p>
+                        <p>
+                          Aprovado em <span>{formatedDateTime}</span>
+                        </p>
+                      </>
+                    )}
+                    {f.status === "Pending" && (
+                      <>
+                        <p className={styles.fopStatus}>
+                          Status: <span>Pendente</span>
+                        </p>
+                        <p>
+                          Data da ocorrência: <span>{ocorrencyDate}</span>
+                        </p>
+                        <p>
+                          Ponto esquecido: <span>{f.justify}</span>
+                        </p>
+                        <p>
+                          Horário a ser considerado:{" "}
+                          <span>{f.correctHour}</span>
+                        </p>
 
-                      <p>
-                        Negado em <span>{formatedDateTime}</span>
-                      </p>
-                    </>
-                  )}
-                </div>
-              );
-            })}
+                        <p>
+                          Solicitação feita em <span>{formatedDateTime}</span>
+                        </p>
+                      </>
+                    )}
+                    {f.status === "Denied" && (
+                      <>
+                        <p className={styles.fopStatus}>
+                          Status: <span>Negado</span>
+                        </p>
+                        <p>
+                          Data da ocorrência: <span>{ocorrencyDate}</span>
+                        </p>
+                        <p>
+                          Ponto esquecido: <span>{f.justify}</span>
+                        </p>
+                        <p>
+                          Horário a ser considerado:{" "}
+                          <span>{f.correctHour}</span>
+                        </p>
+
+                        <p>
+                          Negado em <span>{formatedDateTime}</span>
+                        </p>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );
